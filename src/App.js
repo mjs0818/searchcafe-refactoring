@@ -1,7 +1,8 @@
-import test from './test';
+/* global kakao */
+import Map from './Map';
 
 function App() {
-  return <div></div>;
+  return <Map />;
 }
 
 export default App;
