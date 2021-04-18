@@ -35,7 +35,7 @@ const Map = ({ cafeInfo }) => {
           script.onload = () => {
             kakao.maps.load(() => {
               let el = document.getElementById('staticMap');
-              let map = new kakao.maps.StaticMap(el, {
+              new kakao.maps.StaticMap(el, {
                 center: position,
                 level: 3,
                 marker: {
