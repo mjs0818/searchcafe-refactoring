@@ -1,10 +1,8 @@
 import Tag from '../Tag/index';
 import Scope from '../Scope/index';
 import styled from 'styled-components';
-import { ImageModal } from '../ImageModal/ImageModal';
 import enlargeImg from '../CommentWrite/images/enlarge.png';
 import commentLoading from './commentLoading.svg';
-import CommentWrite from '../CommentWrite/CommentWrite';
 import { connect } from 'react-redux';
 import { actionCreators } from '../../../reducer/store';
 import { useEffect, useState } from 'react';
@@ -180,34 +178,6 @@ const Divide = styled.div`
   width: 93%;
 `;
 
-const BackGroundCover = styled.div`
-  position: fixed;
-  top: 0%;
-  left: 0%;
-  margin: auto;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(220, 220, 220, 0.94);
-  z-index: 5;
-`;
-
-const Detail3 = styled.div`
-  width: 90%;
-  height: 100%;
-  margin: auto;
-  max-width: 1500px;
-  position: relative;
-  background: #fafafa;
-  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.04);
-
-  margin-top: 5rem;
-  padding-top: 48px;
-  padding-left: 32px;
-  padding-right: 32px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid #e9ecef;
-`;
-
 const Comment = ({
   handleImageEnlarge,
   userComment,
@@ -218,9 +188,6 @@ const Comment = ({
   setBeforeModify,
 }) => {
   const [images, setImages] = useState([commentLoading, commentLoading]);
-  const [imageModal, setModal] = useState(false);
-  const [currentImg, setCurrentImg] = useState('');
-
   const [userProfileImg, setUserProfileImg] = useState(defaultUser);
 
   useEffect(() => {
@@ -247,9 +214,6 @@ const Comment = ({
         });
     }
   }, []);
-  const handleModal = () => {
-    setCommentModal((pres) => !pres);
-  };
 
   const deleteComment = async () => {
     try {
@@ -296,15 +260,15 @@ const Comment = ({
     beforeTime = parseInt(beforeTime / 1000);
     if (beforeTime / 60 < 1) {
       return '1분 전';
-    } else if (1 <= beforeTime / 60 < 60) {
+    } else if (beforeTime / 60 < 60) {
       return `${parseInt(beforeTime / 60)}분 전`;
-    } else if (1 <= beforeTime / 60 / 60 < 24) {
+    } else if (beforeTime / 60 / 60 < 24) {
       return `${parseInt(beforeTime / 60 / 60)}시간 전`;
-    } else if (1 <= beforeTime / 60 / 60 / 24 < 31) {
+    } else if (beforeTime / 60 / 60 / 24 < 31) {
       return `${parseInt(beforeTime / 60 / 60)}일 전`;
-    } else if (1 <= beforeTime / 60 / 60 / 24 / 31 < 1) {
+    } else if (beforeTime / 60 / 60 / 24 / 31 < 1) {
       return `${parseInt(beforeTime / 60 / 60)}달 전`;
-    } else if (1 <= beforeTime / 60 / 60 / 24 / 31 / 12 < 1) {
+    } else if (beforeTime / 60 / 60 / 24 / 31 / 12 < 1) {
       return `${parseInt(beforeTime / 60 / 60)}년 전`;
     }
   };

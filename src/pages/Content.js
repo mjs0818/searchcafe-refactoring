@@ -1,14 +1,10 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import { dbService } from '../Firebase';
 import NearbyCafe from '../components/NearbyCafe/NearbyCafe';
 import { connect } from 'react-redux';
 import { actionCreators } from '../reducer/store';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import ContentHeader from '../components/ContentHeader/index';
-// import ContentDetail from '../components/ContentDetail/index';
 import ContentComment from '../components/ContentComment/index';
-import { img } from './main.jpeg';
-import { cafeComment } from '../cafeInfos';
 import { useEffect } from 'react';
 
 const ContentStyle = styled.div`
@@ -54,7 +50,7 @@ const Content = (state) => {
       currentCafeData.cafeid = cafeId;
       await state.handleCurrentCafe(currentCafeData);
     } catch (error) {
-      console.log('error' + error);
+      console.error('error' + error);
     }
     try {
       const commentData = await dbService.collection('CafeComment').get();
@@ -65,13 +61,12 @@ const Content = (state) => {
       });
       await state.handleCafeComment(cafeCommentArr);
     } catch (error) {
-      console.log('error' + error);
+      console.error('error' + error);
     }
   };
 
   return (
     <ContentStyle>
-      {/* <GlobalStyle /> */}
       <ContentWrapper>
         <Inner>
           <ContentHeader></ContentHeader>

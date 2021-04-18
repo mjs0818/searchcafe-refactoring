@@ -5,8 +5,7 @@ import Fade from 'react-reveal/Fade';
 
 import mainImg from './main.jpeg';
 import Tag from '../components/utils/Tag/index';
-import styled, { keyframes } from 'styled-components';
-import coffeeImg from './coffee.svg';
+import styled from 'styled-components';
 import { actionCreators } from '../reducer/store';
 import { connect } from 'react-redux';
 

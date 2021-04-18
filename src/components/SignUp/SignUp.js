@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { authService, dbService, storageService } from '../../Firebase';
 import { actionCreators } from '../../reducer/store';
 import { connect } from 'react-redux';
@@ -21,7 +21,6 @@ const SignUp = ({ handleClose, handleOpen, show, userHandler }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [userInfo, setUserInfo] = useState('');
 
   const handleChange = (e) => {
     if (e.target.name === 'email') {
@@ -96,6 +95,7 @@ const SignUp = ({ handleClose, handleOpen, show, userHandler }) => {
             src={removeImg}
             className="close-btn"
             onClick={handleClose}
+            alt="close"
           ></img>
           <h1 className="header-signup">회원가입</h1>
           <form className="signup-form" onSubmit={handleSubmit}>

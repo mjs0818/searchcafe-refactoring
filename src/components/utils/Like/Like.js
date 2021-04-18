@@ -41,7 +41,6 @@ const Like = ({ user, currentCafe, handleUserHeart }) => {
   };
   const [showSignin, setShowSignin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
-  const [isLogin, setIsLogin] = useState(!!user);
   const [like, setLike] = useState(
     !currentCafe |
       !user |
@@ -73,7 +72,7 @@ const Like = ({ user, currentCafe, handleUserHeart }) => {
         show={showSignup}
         handleClose={closeSignup}
         handleOpen={openSignin}
-      />{' '}
+      />
       <ButtonStyle onClick={handleLike}>
         <div>
           <span>

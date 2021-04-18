@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import Card from '../utils/Card/index';
-import CardSkeleton from '../utils/Card/CardSkeleton';
 const MyCafeStyle = styled.div`
   width: 90%;
   min-width: 400px;

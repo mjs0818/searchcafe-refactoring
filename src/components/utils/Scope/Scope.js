@@ -1,5 +1,4 @@
-import { useEffect, useLayoutEffect, useMemo, useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 
 const Polygon = styled.polygon`
@@ -17,7 +16,6 @@ const ScopeStyle = styled.button`
 `;
 
 const Star = (props) => {
-  let index = props.index;
   return (
     <svg
       onClick={props.click}

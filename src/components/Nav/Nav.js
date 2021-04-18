@@ -22,7 +22,6 @@ const NavStyle = styled.div`
 `;
 
 const Nav = ({ state, userHandler }) => {
-  // const [Login, setLogin] = useState(false);
   const [showSignin, setShowSignin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
   const [isLogin, setIsLogin] = useState(false);

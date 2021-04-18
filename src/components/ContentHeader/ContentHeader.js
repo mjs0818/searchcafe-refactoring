@@ -2,22 +2,15 @@ import Table from './table.svg';
 import Cup from './coffee.png';
 import Time from './clock.png';
 import blank from './blank.png';
-import { tagName } from '../../cafeInfos';
 import Tag from '../utils/Tag/index';
 import styled from 'styled-components';
 import Like from '../utils/Like/Like';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import locationImg from './location.png';
-import { cafes } from '../../cafeInfos';
-import React, { useState, useEffect, useMemo } from 'react';
-import defaultImg from '../utils/Card/dummyImg/defaultCafe.jpeg';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { actionCreators } from '../../reducer/store';
-import { $CombinedState } from 'redux';
 
-/////////////////////////////////////
 const Detail = styled.div`
   display: grid;
   grid-template-columns: 2fr 8fr 1fr 10fr 0.5fr;
@@ -71,9 +64,7 @@ const ActionButtonWrap = styled.div`
   bottom: 35px;
   right: 20px;
 `;
-const LikeCss = styled(Like)`
-  align-items: start;
-`;
+
 ///////ANCHOR Second
 const InfoAdress = styled.div`
   display: grid;
@@ -104,9 +95,7 @@ const Info = styled.div`
   margin-left: 0;
   padding: 3px;
 `;
-const Location = styled.img`
-  width: 30px;
-`;
+
 const InfoTitle = styled.span`
   color: #4f4f4f;
   font-weight: 600;
@@ -247,7 +236,6 @@ const Divide = styled.div`
 `;
 
 const ContentHeader = (props) => {
-  console.log(props);
   const [nav1, setNav1] = useState(null);
   const [nav2, setNav2] = useState(null);
   const [slider1, setSlider1] = useState(null);
@@ -255,7 +243,6 @@ const ContentHeader = (props) => {
   const [cafeImg, setCafeImg] = useState(
     !props.currentCafe ? [blank] : props.currentCafe.cafeImg
   );
-  let cafeid = !props.currentCafe ? '' : props.currentCafe.cafeid;
   let cafeTag = !props.currentCafe ? '' : props.currentCafe.cafeTag;
   let cafeName = !props.currentCafe ? '' : props.currentCafe.cafeName;
   let cafeAddress = !props.currentCafe ? '' : props.currentCafe.cafeAddress;
@@ -302,8 +289,6 @@ const ContentHeader = (props) => {
 
   return (
     <>
-      {/* <MainImgCover />
-      <MainImage style={{ backgroundImage: `url(${cafeImg[0]})` }} /> */}
       <Detail>
         <FakeDiv></FakeDiv>
         <DescribeContainer>
@@ -419,12 +404,5 @@ const ContentHeader = (props) => {
 function mapStateToProps(state, ownProps) {
   return { ...state };
 }
-
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     addcurrentCafe: (currentCafe) =>
-//       dispatch(actionCreators.currentCafeClick(currentCafe)),
-//   };
-// }
 
 export default connect(mapStateToProps, null)(ContentHeader);

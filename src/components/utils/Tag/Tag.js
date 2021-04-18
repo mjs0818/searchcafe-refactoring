@@ -10,7 +10,6 @@ import groupseat from './asset/groupseat.png';
 import paul from './asset/paul.png';
 import hollys from './asset/hollys.png';
 import pet from './asset/pet.png';
-import sea from './asset/sea.png';
 import stab from './asset/stab.png';
 import takeout from './asset/takeout.png';
 import tasking from './asset/tasking.png';
@@ -113,7 +112,6 @@ const SmallTagName = styled(TagName)`
   position: relative;
   top: 1%;
 `;
-const MoreSmallTagName = styled(TagName)``;
 
 const Tag = (props) => {
   const [isClick, setClick] = useState(false);

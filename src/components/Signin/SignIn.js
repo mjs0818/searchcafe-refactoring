@@ -32,7 +32,7 @@ const SignIn = ({ handleClose, handleOpen, show, state, userHandler }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      let check = await authService
+      await authService
         .signInWithEmailAndPassword(email, password)
         .then((user) => {
           let currentUserData;
@@ -77,7 +77,12 @@ const SignIn = ({ handleClose, handleOpen, show, state, userHandler }) => {
   return (
     <div className={showHideClassName}>
       <section className="modal-signin-main">
-        <img src={removeImg} className="close-btn" onClick={handleClose}></img>
+        <img
+          src={removeImg}
+          className="close-btn"
+          onClick={handleClose}
+          alt="close"
+        />
         <h1 className="header-signin">로그인</h1>
         <div className="email-login container">
           <form className="login-form" onSubmit={onSubmit}>

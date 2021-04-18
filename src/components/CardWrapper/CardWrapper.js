@@ -1,17 +1,12 @@
 import styled from 'styled-components';
 import Card from '../utils/Card/index';
-import CardSkeleton from '../utils/Card/CardSkeleton';
 import noResultImg from './noResult.png';
 import { connect } from 'react-redux';
 import { actionCreators } from '../../reducer/store';
-import { dbService, storageService } from '../../Firebase';
-import { useEffect, useState, useMemo, Fragment } from 'react';
+import { dbService } from '../../Firebase';
+import { useEffect, useState } from 'react';
 import { cafes } from '../../cafeInfos';
-import {
-  CSSTransition,
-  TransitionGroup,
-  Transition,
-} from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
 import Recommendation from './Recommendation';
 import getNearbyCafe from '../../getNearbyCafe';
 import Fade from 'react-reveal/Fade';
@@ -47,13 +42,6 @@ const WrapperTitle = styled.div`
   text-align: center;
 `;
 
-const NoSearchResultContainer = styled.div`
-  margin: auto;
-  /* width: 60%; */
-  height: auto;
-  position: relative;
-  top: 50px;
-`;
 const NoSearchResultTitle = styled.div`
   font-size: 2rem;
   width: 90%;
@@ -81,20 +69,14 @@ const CardWrapper = ({ state, cardList }) => {
     <Card key={5} skeletonSize="420px"></Card>,
     <Card key={6} skeletonSize="445px"></Card>,
   ];
-  const [isTag, setIsTag] = useState(false);
-  // const [cards, setCards] = useState([]);
   const [cards, setCards] = useState(cafes);
   const [isCozyCafe, setCozyCafe] = useState(Skeleton);
   const [isGoodForTask, setGoodForTask] = useState(Skeleton);
   const [nearbyCafe, setNearbyCafe] = useState('');
-  const [currentKeyword, setCurrentKeyword] = useState('');
   let cardListArr = [];
   let cozyCafe = [];
   let goodForTask = [];
 
-  const getData = async () => {
-    return await getNearbyCafe();
-  };
   // NOTE '전체 카드목록' + '메인화면 카드' 설정 및 'cards' 설정
   useEffect(() => {
     dbService
@@ -106,7 +88,6 @@ const CardWrapper = ({ state, cardList }) => {
         });
       })
       .catch(function (error) {
-        // console.log('Error getting documents: ', error);
         cardList(cafes);
         setCards(cafes);
       })
@@ -139,7 +120,6 @@ const CardWrapper = ({ state, cardList }) => {
         setGoodForTask(goodForTask);
         let cafe = await getNearbyCafe();
         setNearbyCafe(cafe);
-        console.log(nearbyCafe);
       });
   }, []);
 
@@ -184,12 +164,6 @@ const CardWrapper = ({ state, cardList }) => {
       }
     });
     setCards(returnArr);
-    // if (returnArr.length > 0) {
-    //   console.log(returnArr);
-    //   setCards(returnArr);
-    // } else {
-    //   returnArr
-    // }
   }, [state.keyword]);
 
   // NOTE 검색 결과 없음'

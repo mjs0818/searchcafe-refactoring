@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { dbService } from '../../Firebase';
 import Map from '../../Map';
 import { Link } from 'react-router-dom';
@@ -61,7 +61,6 @@ const NearbyCafe = (state) => {
 
   useEffect(() => {
     if (state.currentCafe) {
-      console.log('state', state);
       dbService
         .collection('CafeInformation')
         .where('region_1depth', '==', state.currentCafe.region_1depth)

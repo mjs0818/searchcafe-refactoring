@@ -9,7 +9,6 @@ import { actionCreators } from '../../reducer/store';
 import { useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import './Profile.css';
-import { act } from 'react-dom/cjs/react-dom-test-utils.production.min';
 import styled from 'styled-components';
 import loading from './loading.svg';
 
@@ -30,7 +29,6 @@ const Profile = ({
   const [attachment, setAttachment] = useState(
     state.user ? state.user.photoURL : ''
   );
-  console.log(userInfo);
   const [photoFile, setPhotoFile] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [rePassword, setRePassword] = useState('');
@@ -44,17 +42,7 @@ const Profile = ({
     if (!state.user) {
       history.push('/');
     }
-    // authService.onAuthStateChanged((user) => {
-    //   if (state.user) {
-    //     setUserInfo(state.user);
-    //     if (user.displayName) {
-    //       setNewDisplayName(user.displayName);
-    //     } else {
-    //       setNewDisplayName(user.email);
-    //     }
-    //   }
-    // });
-  }, []);
+  }, [state.user]);
 
   const onChange = (event) => {
     const {
@@ -102,7 +90,7 @@ const Profile = ({
             'state_changed',
             (snapshot) => {},
             (error) => {
-              console.log(error);
+              console.error(error);
               rej();
             },
             async () => {
@@ -143,7 +131,7 @@ const Profile = ({
                 setErrorMessage('비밀번호 변경 성공');
               })
               .catch((error) => {
-                console.log(error);
+                console.error(error);
               })
               .finally(() => {
                 setPrePassword('');
@@ -176,6 +164,7 @@ const Profile = ({
               <img
                 className="image"
                 src={attachment ? attachment : userInfo.photoURL}
+                alt="profile"
               />
             </div>
             <label htmlFor="input-file" className="upload-btn">

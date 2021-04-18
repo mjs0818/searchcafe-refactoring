@@ -122,10 +122,6 @@ const LinkContent = styled(Link)`
   }
 `;
 
-const FadeStyle = styled(Fade)`
-  display: inline-block;
-`;
-
 const Card = (props) => {
   if (!props.cafeid & (props.cafeid !== 0)) {
     return <CardSkeleton size={props.skeletonSize}></CardSkeleton>;

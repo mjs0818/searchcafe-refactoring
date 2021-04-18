@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import styled, { ThemeConsumer } from 'styled-components';
+import styled from 'styled-components';
 import { actionCreators } from '../../../reducer/store';
 import { ImageModal } from '../ImageModal/ImageModal';
 import Scope from '../Scope/index';
@@ -111,13 +111,7 @@ const ButtonWrapper = styled.span`
     left: 0%;
   }
 `;
-const CommentSubmitButton = styled.button`
-  width: 110px;
-  height: 40px;
-`;
-const CommentOutButton = styled(CommentSubmitButton)`
-  margin-top: 30px;
-`;
+
 const UploadImg = styled.label`
   display: inline-block;
   width: 100px;
@@ -185,7 +179,6 @@ const LimitComment = styled.div`
   color: ${(props) => (props.error ? 'red' : '#7f7f7f')};
 `;
 
-const UploadImgContainer = styled.div``;
 const Uploaded = styled.span`
   display: inline-block;
   width: 122px;
@@ -222,12 +215,9 @@ const CommentWrite = ({
   const [imageModal, setModal] = useState(false);
   const [currentImg, setCurrentImg] = useState('');
   const [limitImgError, setLimitImgError] = useState(false);
-  const [limitCommentError, setLimitCommentError] = useState(false);
-  const [modifyObj, setModifyObj] = useState({});
   const [fillAllContent, setFillAllContent] = useState(false);
   useEffect(() => {
     if (beforeModify) {
-      setModifyObj(beforeModify);
       setImages(beforeModify.userImg);
       setTags(beforeModify.userTag);
       setScope(beforeModify.userStar);
@@ -245,16 +235,13 @@ const CommentWrite = ({
   useMemo(() => {
     if (submitComment.length > 300) {
       setSubmitComment(submitComment.slice(0, 300));
-      setLimitCommentError(true);
 
-      let timer = setTimeout(() => {
-        setLimitCommentError(false);
-      }, 1500);
+      setTimeout(() => {}, 1500);
     }
   }, [submitComment]);
 
   const updateCafeStarScore = async (cafeId) => {
-    const data = await dbService
+    await dbService
       .collection('CafeInformation')
       .where('id', '==', cafeId)
       .update({
@@ -296,10 +283,6 @@ const CommentWrite = ({
   };
 
   const settingCommentData = async () => {
-    // console.log(
-    //   'Set Cafe Info :' + `${currentCafe.cafeid}&${comment.length + 1}`
-    // );
-
     await dbService
       .collection('CafeComment')
       .doc(`${currentCafe.cafeid}&${comment.length + 1}`)
@@ -317,7 +300,6 @@ const CommentWrite = ({
     // 처음 올릴떄 처리
     if (comment.length + 1 === 1) {
       let averageStar = Math.round(scope / (comment.length + 1));
-      // console.log('averageStar :' + averageStar);
       await dbService
         .collection('CafeInformation')
         .doc(`${currentCafe.cafeName}`)
@@ -336,7 +318,6 @@ const CommentWrite = ({
         }
       });
       let averageStar = Math.round(accumulateStar / length);
-      // console.log('averageStar :' + averageStar);
       await dbService
         .collection('CafeInformation')
         .doc(`${currentCafe.cafeName}`)
@@ -381,7 +362,6 @@ const CommentWrite = ({
       let tempMyComment = user.comment ? user.comment : [];
       tempMyComment.push(currentCafe.cafeName);
       userMyCommentHandler(tempMyComment);
-      // console.log('userMycommentHandler ??', tempMyComment);
       dbService.collection('users').doc(user.uid).update({
         comment: tempMyComment,
       });
@@ -408,7 +388,7 @@ const CommentWrite = ({
         'state_changed',
         (snapshot) => {},
         (error) => {
-          console.log(error);
+          console.error(error);
           rej();
         },
         () => {
@@ -579,26 +559,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentWrite);
-
-// const getUrlFromFirestore = (inputImage) => {
-//   if (images.length > 2) {
-//     setLimitImgError(true);
-//     let imgTimer = setTimeout(() => {
-//       setLimitImgError(false);
-//     }, 1500);
-//     return;
-//   }
-//   setImages((preImages) => [...preImages, loading]);
-//   const reader = new FileReader();
-//   reader.onloadend = (finishedEvent) => {
-//     const {
-//       currentTarget: { result },
-//     } = finishedEvent;
-//     setImages((preImages) => {
-//       preImages.splice(preImages.length - 1, 1, result);
-//       return [...preImages];
-//     });
-//     setImagesRowData((pres) => [...pres, inputImage]);
-//   };
-//   reader.readAsDataURL(inputImage);
-// };

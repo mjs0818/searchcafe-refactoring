@@ -1,19 +1,17 @@
 import Comment from '../utils/Comment/index';
 import CommentWrite from '../utils/CommentWrite/index';
-import { cafeComment } from '../../cafeInfos';
 import styled from 'styled-components';
 import { ImageModal } from '../utils/ImageModal/ImageModal';
-import { useState, useEffect, useMemo } from 'react';
-import { connect, useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import { actionCreators } from '../../reducer/store';
 import Button from '../utils/Button/Button';
 import reviewImg from './review.svg';
-import { act } from 'react-dom/cjs/react-dom-test-utils.production.min';
 import { dbService } from '../../Firebase';
 import SignIn from '../Signin/SignIn';
 import SignUp from '../SignUp/SignUp';
-import Like from '../utils/Like/Like';
 import Fade from 'react-reveal/Fade';
+
 const Detail3 = styled.div`
   width: 1000px;
   height: auto;
@@ -99,7 +97,6 @@ const ContentComment = ({
   handleUserMyComment,
 }) => {
   const [commentModal, setModal] = useState(false);
-  const [commentArr, setCommentArr] = useState([]);
   const [showSignin, setShowSignin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
   const [isLogin, setIsLogin] = useState(!!user);
