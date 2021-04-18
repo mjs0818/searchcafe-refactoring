@@ -21,6 +21,7 @@ function getDistance(lat1, lng1, lat2, lng2) {
 }
 
 const getNearbyCafe = async () => {
+  const { kakao } = window;
   let geocoder = new kakao.maps.services.Geocoder();
   let position = await getCurrentPosition();
 

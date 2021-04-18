@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 
 const Map = ({ cafeInfo }) => {
+  const { kakao } = window;
   useEffect(() => {
     if (cafeInfo) {
       const places = new kakao.maps.services.Places();

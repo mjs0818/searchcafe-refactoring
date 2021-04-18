@@ -221,7 +221,6 @@ const Comment = ({
         .collection('CafeComment')
         .doc(`${userComment.cafeId}&${userComment.commentId}`)
         .delete();
-      console.log('Document successfully deleted!');
     } catch (error) {
       console.error('CafeComment Delete Fail :' + error);
     }

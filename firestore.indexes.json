@@ -1,0 +1,23 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "CafeInformation",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "region_1depth",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "region_2depth",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "cafeName",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}
