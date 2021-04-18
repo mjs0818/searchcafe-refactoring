@@ -1,0 +1,71 @@
+body {
+  background-color: #efefef;
+  font-family: 'Nanum Gothic', 'Noto Sans KR', sans-serif;
+  color: #424242;
+}
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+  background-color: #efefef;
+}
+::-webkit-scrollbar-track {
+  width: #aaaaaa;
+  opacity: 1;
+}
+::-webkit-scrollbar-thumb {
+  /*  스크롤  */
+  background-color: #998d8a;
+  border-radius: 30px;
+}
+::-webkit-scrollbar-thumb:hover {
+  /*  스크롤  */
+  background-color: #796d6a;
+  border-radius: 30px;
+}
+@font-face {
+  font-family: 'Nanum Gothic';
+  src: url('./styles/NanumGothic-Regular.ttf');
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.cafe {
+  display: flex;
+}
+
+.map {
+  float: left;
+}

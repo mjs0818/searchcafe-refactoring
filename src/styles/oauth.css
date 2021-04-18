@@ -1,0 +1,112 @@
+.account-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.siginin-button {
+  width: 17rem;
+  height: 2.5rem;
+  margin-bottom: 20px;
+  margin-left: 60px;
+  margin-top: 12px;
+  padding-left: 0px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  border-radius: 10px;
+  border: none;
+}
+
+.social-text {
+  text-decoration: none;
+  font-size: 0.85rem;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  font-weight: 400;
+  padding-top: 0.7rem;
+  color: #fff;
+  pointer-events: none;
+}
+
+.social-logo {
+  border: 1px solid black;
+  background-color: #fff;
+  border-radius: 10px;
+  margin-left: 0px;
+  pointer-events: none;
+}
+
+.button--google {
+  background-color: #5893ef;
+  transition: 0.3s;
+  width: 17rem;
+  height: 2.6rem;
+  margin-bottom: 20px;
+  margin-top: 12px;
+  padding-left: 0px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  border-radius: 10px;
+  border: none;
+}
+.button--google:hover {
+  background-color: #4883df;
+  transition: 0.3s;
+}
+.button--google:focus {
+  background-color: #4883df;
+  transition: 0.3s;
+  outline: 0;
+}
+
+.button--github {
+  background-color: #516ca4;
+  transition: 0.3s;
+  width: 17rem;
+  height: 2.6rem;
+  margin-bottom: 20px;
+  margin-top: 12px;
+  padding-left: 0px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  border-radius: 10px;
+  border: none;
+}
+.button--github:hover {
+  background-color: #314c74;
+  transition: 0.3s;
+}
+.button--github:focus {
+  background-color: #314c74;
+  transition: 0.3s;
+  outline: 0;
+}
+
+.button--facebook {
+  background-color: #007fff;
+  transition: 0.3s;
+  width: 17rem;
+  height: 2.6rem;
+  margin-bottom: 20px;
+  margin-top: 12px;
+  padding-left: 0px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  border-radius: 10px;
+  border: none;
+}
+.button--facebook:hover {
+  background-color: #005fdf;
+  transition: 0.3s;
+}
+.button--facebook:focus {
+  background-color: #005fdf;
+  transition: 0.3s;
+  outline: 0;
+}

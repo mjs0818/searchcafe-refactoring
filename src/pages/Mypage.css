@@ -1,0 +1,60 @@
+.tabs-wrapper {
+  width: 50%;
+  max-width: 1600px;
+  height: 140px;
+  margin: auto;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: gainsboro;
+  height: 50px;
+  position: relative;
+  margin: auto;
+  top: 90px;
+  min-width: 300px;
+  max-width: 300px;
+  color: black;
+  border-radius: 50px;
+  right: 30%;
+}
+
+.tabs-contents {
+  font-family: 'Nanum Pen Script', cursive;
+  position: relative;
+  padding: 10px 37px 10px 37px;
+  color: #727272;
+  font-size: 20px;
+  cursor: pointer;
+  display: inline-block;
+}
+.tabs-contents:hover {
+  color: black;
+}
+.tabs-contents-active {
+  font-family: 'Nanum Pen Script', cursive;
+  position: relative;
+  padding: 10px 37px 10px 37px;
+  background-color: #594d4a;
+  border-radius: 50px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.content-profile {
+  margin: auto;
+  width: 80%;
+}
+
+@media (max-width: 900px) {
+  .tabs {
+    margin: auto;
+    display: flex;
+    width: 300px;
+    right: 0;
+  }
+}

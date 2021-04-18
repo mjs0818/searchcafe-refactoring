@@ -1,0 +1,36 @@
+.header {
+  background-color: #392d2a;
+  height: 4.7%;
+  min-height: 30px;
+  max-height: 100px;
+  display: flex;
+  position: fixed;
+  align-items: center;
+  z-index: 2;
+  width: 100%;
+  font-size: 0.9rem;
+  opacity: 0.95;
+}
+.logo {
+  flex-grow: 1;
+  margin-left: 30px;
+}
+.login {
+  margin-right: 30px;
+  color: white;
+  z-index: 1;
+}
+
+.login-btn {
+  cursor: pointer;
+}
+
+.mypage-btn a {
+  text-decoration: none;
+  color: white;
+}
+
+.logo a {
+  text-decoration: none;
+  color: white;
+}
