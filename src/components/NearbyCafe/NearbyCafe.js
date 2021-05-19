@@ -43,7 +43,7 @@ const Cover = styled.div`
   width: 380px;
   height: 130px;
 `;
-const LinkContent = styled(Link)`
+const LinkContent = styled.a`
   color: black;
   text-decoration: none;
   &:before {
@@ -57,36 +57,45 @@ const LinkContent = styled(Link)`
 `;
 
 const NearbyCafe = (state) => {
+  console.log(state.currentCafe);
   const [nearbyCafe, setNearbyCafe] = useState([]);
-
+  const [currentCafe, setCurrentCafe] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const getNearbyCafe = async (current) => {
+    await dbService
+      .collection('CafeInformation')
+      .where('region_1depth', '==', current.region_1depth)
+      .where('region_2depth', '==', current.region_2depth)
+      .where('cafeName', '!=', current.cafeName)
+      .limit(4)
+      .onSnapshot((snapshot) => {
+        let cafes = snapshot.docs.map((doc) => doc.data());
+        setNearbyCafe(cafes);
+      });
+  };
+  useEffect(() => {
+    setCurrentCafe(state.currentCafe);
+    console.log('setCurrentCafe', state.currentCafe);
+    setLoading(true);
+  }, []);
   useEffect(() => {
     if (state.currentCafe) {
-      dbService
-        .collection('CafeInformation')
-        .where('region_1depth', '==', state.currentCafe.region_1depth)
-        .where('region_2depth', '==', state.currentCafe.region_2depth)
-        .where('cafeName', '!=', state.currentCafe.cafeName)
-        .limit(4)
-        .onSnapshot((snapshot) => {
-          let cafes = snapshot.docs.map((doc) => doc.data());
-          setNearbyCafe(cafes);
-        });
+      getNearbyCafe(state.currentCafe);
     }
   }, [state.currentCafe]);
   return (
     <NearbyCafeStyle>
       <div className="map-container">
-        <Map cafeInfo={state.currentCafe} />
+        {loading && <Map cafeInfo={state.currentCafe} />}
       </div>
       <ul className="cafe-list">
         <h3 className="cafe-list-title">주변 카페 추천</h3>
         {nearbyCafe.map((cafe, index) => (
-          <div className="cafe-link">
-            <LinkContent key={index} to={`/content/${cafe.id}`}>
+          <div className="cafe-link" key={index}>
+            <LinkContent key={index} href={`/content/${cafe.id}`}>
               <Cover id={cafe.id}></Cover>
               <CafeList className="cafe">
                 <CafeImage src={cafe.cafeImg} />
-
                 <div className="cafe-info">
                   <div className="cafe-name">{cafe.cafeName}</div>
                   <div className="cafe-address">주소 : {cafe.cafeAddress}</div>
@@ -98,6 +107,7 @@ const NearbyCafe = (state) => {
       </ul>
     </NearbyCafeStyle>
   );
+  return <></>;
 };
 
 function mapStateToProps(state, ownProps) {
