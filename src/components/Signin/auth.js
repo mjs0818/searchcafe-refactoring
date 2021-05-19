@@ -17,17 +17,23 @@ const Auth = ({ handleClose, userHandler }) => {
     } else if (name === 'facebook') {
       provider = new firebaseInstance.auth.FacebookAuthProvider();
     }
-    const data = await authService.signInWithPopup(provider);
-    const user = data.user;
-    userHandler({ ...user.providerData[0], uid: user.uid });
-    const checkDB = await dbService.collection('users').doc(user.uid).get();
-    if (!checkDB.exists) {
-      await dbService
-        .collection('users')
-        .doc(user.uid)
-        .set({ ...user.providerData[0], uid: user.uid });
+    try {
+      const data = await authService.signInWithPopup(provider);
+      const user = data.user;
+      userHandler({ ...user.providerData[0], uid: user.uid });
+      const checkDB = await dbService.collection('users').doc(user.uid).get();
+      if (!checkDB.exists) {
+        await dbService
+          .collection('users')
+          .doc(user.uid)
+          .set({ ...user.providerData[0], uid: user.uid });
+      }
+      handleClose();
+    } catch (error) {
+      if (error.code === 'auth/account-exists-with-different-credential') {
+        alert('다른 소셜 계정이 존재합니다');
+      }
     }
-    handleClose();
   };
   return (
     <div className="account-login">
